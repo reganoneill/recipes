@@ -1,0 +1,60 @@
+html {
+    box-sizing: border-box;
+    min-width: 100%;
+}
+
+* {
+    font-family: 'Helvetica'
+}
+
+body {
+    background-color: #fbe3b9;
+    /* secondary: #fab696 */
+    /* alt: #0c9463 */
+    /* alt2: #2d334a */
+}
+
+h4{
+    font-size: 2em;
+}
+
+.formBar {
+    display: flex;
+    flex-direction: column;
+}
+
+.formItemContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.formItem {
+    display: flex;
+    flex-direction: column;
+    margin: 1.25em;
+    padding: 1.25em 0.25em;
+}
+
+.formItem p {
+    color: #2d334a;
+    padding-bottom: 1em;
+}
+
+.formItem input {
+}
+
+.filterSelect {
+    min-width: 8em;
+    margin: 1em 0;
+}
+
+select{ 
+}
+
+.results {
+    display: block;
+    overflow: scroll;
+    border-left: 1px solid grey;
+    padding-left: 0.75em;
+    min-height: 20em;
+}

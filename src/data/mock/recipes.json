@@ -1,0 +1,38 @@
+{
+    "recipes": [
+        {
+            "meal": "anytime",
+            "difficulty": "easy",
+            "prepTimeMinutes": 10,
+            "cookTimeMinutes": 0,
+            "ingredientList": ["tomato", "avocado", "jalapeno"],
+            "title": "Guacomole",
+            "style": "mexican",
+            "notes": "use heirloom or cherry tomatoes is possible and make sure avocado is ripe. lots of salt (the fancier the better)",
+            "score": 7
+        },
+        {
+            "meal": "breakfast",
+            "difficulty": "easy",
+            "prepTimeMinutes": 5,
+            "cookTimeMinutes": 15,
+            "ingredientList": ["rolled oats", "fruit", "maple syrup", "oat milk"],
+            "title": "Oatmeal",
+            "style": "american",
+            "notes": "might seem like a good idea, but you probably shouldn't eat these raw",
+            "score": 3
+        },
+        {
+            "meal": "dinner",
+            "difficulty": "hard",
+            "prepTimeMinutes": 120,
+            "cookTimeMinutes": 15,
+            "ingredientList": ["tofu", "nori", "sushi rice", "coco aminos"],
+            "title": "Sushi Bowl",
+            "style": "japanese",
+            "notes": "be careful not to get rice too sticky",
+            "score": 6
+        }
+    ]
+    
+}
