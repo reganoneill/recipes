@@ -11,15 +11,14 @@ import useDropdown from "./useDropdown";
 
 import { IRecipe } from "./types/IRecipe";
 
-// dev only
+// dev/test only
 import * as recipeData from "./data/mock/recipes.json";
 
 type InputEvent = React.ChangeEvent<HTMLInputElement>;
 
 const SearchParams: FunctionComponent<RouteComponentProps> = () => {
     const [theme, setTheme] = useContext(ThemeContext);
-    const [checked, setChecked] = useState("meal");
-    const [location, updateLocation] = useState("Seattle, WA");
+    const [checked, setChecked] = useState("all");
     const [recipes, updateRecipes] = useState(recipeData.recipes as IRecipe[]);
     const [meal, MealTypeDropdown, updateMealType] = useDropdown("Meal", "Breakfast", ["Breakfast", "Lunch", "Dinner"]);
     const [difficulty, MealDifficulty, updateMealDifficultyLevel] = useDropdown("Difficulty", "easy", ["easy", "medium", "hard"]);
@@ -32,10 +31,16 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
     }
 
     const requestMeals = () => {
+
+        if (checked === 'all') {
+            updateRecipes(staticRecipeDataset);
+            return;
+        }
+
         const fetchData : { [key: string]: string } = {
             meal,
             difficulty,
-            style
+            style,
         };
 
         const requestedRecipes = staticRecipeDataset.filter((recipe, idx) => recipe[checked] === fetchData[checked].toLowerCase());
@@ -80,6 +85,15 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
                     value="style"
                     onChange={radioHandleInputChange}
                     checked={checked === "style"}
+                /> 
+            </div>
+            <div className="formItem">
+                <p>Show All</p>
+                <input 
+                    type="radio" 
+                    value="all"
+                    onChange={radioHandleInputChange}
+                    checked={checked === "all"}
                 /> 
             </div>
             </div>

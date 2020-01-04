@@ -10,10 +10,12 @@ const App = () => {
         <ThemeContext.Provider value={theme}>
             <div className="mainContainer">
                 <header>
-                    <Link to="/">Recipe Ref</Link>
+                    {/* TODO: add this in later when layout comes together */}
+                    {/* <Link to="/">Recipe Ref</Link> */}
                 </header>
                 <Router>
                     <SearchParams path="/" />
+                    {/* TODO: add this in later to reference individual recipes */}
                     {/* <Details path="/details/:id" /> */}
                 </Router>
             </div>
