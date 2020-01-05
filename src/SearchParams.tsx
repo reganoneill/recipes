@@ -103,5 +103,5 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
       </div>
     );
   };
-  
+
   export default SearchParams;

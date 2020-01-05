@@ -1,5 +1,4 @@
 import React, { useState, FunctionComponent } from "react";
-import { RouteComponentProps } from "@reach/router";
 
 function useDropdown(
     label: string,
@@ -10,23 +9,21 @@ function useDropdown(
 
     const id = `use-dropdown-${label.replace(" ","").toLowerCase()}`;
     const Dropdown = () => (
-        <label htmlFor={id}>
-            {label.toLowerCase()}
-            <select
-                id={id}
-                value={state}
-                className="filterSelect"
-                onChange={e => updateState(e.target.value)}
-                onBlur={e => updateState(e.target.value)}
-                disabled={!options.length}
-            >
-                {options.map((item) => (
-                    <option key={item} value={item}>
-                        {item}
-                    </option>
-                ))}
-            </select>
-        </label>
+        <select
+            id={id}
+            data-testid={id}
+            value={state}
+            className="filterSelect"
+            onChange={e => updateState(e.target.value)}
+            onBlur={e => updateState(e.target.value)}
+            disabled={!options.length}
+        >
+            {options.map((item) => (
+                <option key={item} value={item}>
+                    {item}
+                </option>
+            ))}
+        </select>
     );
 
     return [state, Dropdown, updateState];
