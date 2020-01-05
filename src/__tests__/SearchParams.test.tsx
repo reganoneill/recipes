@@ -9,4 +9,10 @@ test("SearchParams", async () => {
   const mealDropdown = getByTestId("use-dropdown-meal");
   expect(mealDropdown.children.length).toEqual(3);
 
+  const difficultyDropdown = getByTestId("use-dropdown-difficulty");
+  expect(difficultyDropdown.children.length).toEqual(3);
+
+  const styleDropdown = getByTestId("use-dropdown-style");
+  expect(styleDropdown.children.length).toEqual(5);
+
 });

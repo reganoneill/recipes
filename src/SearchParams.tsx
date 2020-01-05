@@ -57,45 +57,45 @@ const SearchParams: FunctionComponent<RouteComponentProps> = () => {
         }}
         >
             <div className="formItemContainer">
-            <div className="formItem">
-                <p>Meal</p>
-                <MealTypeDropdown />
-                <input 
-                    type="radio"
-                    value="meal"
-                    onChange={radioHandleInputChange}
-                    checked={checked === "meal"}
-                />
-            </div>
-            <div className="formItem">
-                <p>Difficulty</p>
-                <MealDifficulty />
-                <input 
-                    type="radio" 
-                    value="difficulty"
-                    onChange={radioHandleInputChange}
-                    checked={checked === "difficulty"}
-                /> 
-            </div>
-            <div className="formItem">
-                <p>Style</p>
-                <MealStyle />
-                <input 
-                    type="radio" 
-                    value="style"
-                    onChange={radioHandleInputChange}
-                    checked={checked === "style"}
-                /> 
-            </div>
-            <div className="formItem">
-                <p>Show All</p>
-                <input 
-                    type="radio" 
-                    value="all"
-                    onChange={radioHandleInputChange}
-                    checked={checked === "all"}
-                /> 
-            </div>
+                <div className="formItem">
+                    <p>Meal</p>
+                    <MealTypeDropdown />
+                    <input 
+                        type="radio"
+                        value="meal"
+                        onChange={radioHandleInputChange}
+                        checked={checked === "meal"}
+                    />
+                </div>
+                <div className="formItem">
+                    <p>Difficulty</p>
+                    <MealDifficulty />
+                    <input 
+                        type="radio" 
+                        value="difficulty"
+                        onChange={radioHandleInputChange}
+                        checked={checked === "difficulty"}
+                    /> 
+                </div>
+                <div className="formItem">
+                    <p>Style</p>
+                    <MealStyle />
+                    <input 
+                        type="radio" 
+                        value="style"
+                        onChange={radioHandleInputChange}
+                        checked={checked === "style"}
+                    /> 
+                </div>
+                <div className="formItem">
+                    <p>Show All</p>
+                    <input 
+                        type="radio" 
+                        value="all"
+                        onChange={radioHandleInputChange}
+                        checked={checked === "all"}
+                    /> 
+                </div>
             </div>
             <button>Submit</button>
         </form>
