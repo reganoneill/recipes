@@ -1,18 +1,11 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+
 import reducer from "./reducers/index";
 
-const devTools = () => {
-  const toolsExist =
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__();
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-  if (toolsExist) {
-    return (window as any).__REDUX_DEVTOOLS_EXTENSION__();
-  }
+const AppStore = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
-  return (f: any) => f;
-};
-
-const store = createStore(reducer, devTools());
-
-export default store;
+export default AppStore;

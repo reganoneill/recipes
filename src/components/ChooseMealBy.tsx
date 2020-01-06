@@ -1,12 +1,13 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
-import { Dispatch } from "redux";
+// import { Dispatch } from "redux"; //TODO: get this working
 import chooseMeal from "../actionCreators/mealChooser";
 
 interface IProps {
   chooseMealBy: string;
   userOptions: string[];
+  setMealBy: any;
 }
 interface IState {
   selectedOption: string;
@@ -15,75 +16,41 @@ interface IState {
 
 type MostProps = IProps & IState & RouteComponentProps<any>;
 
-//
-// const mapStateToProps = (state: MostProps) => ({
-//   chooseMealBy: state.chooseMealBy,
-//   userOptions: state.userOptions
-// });
-
-// const mapDispatchToProps = (dispatch: any) => ({
-//   setMealBy(meal: string) {
-//     dispatch(chooseMeal(meal));
-//   }
-// });
-
-// const connector = connect(mapStateToProps, mapDispatchToProps);
-
-// type PropsFromRedux = ConnectedProps<typeof connector>;
-
-// type Props = PropsFromRedux & MostProps;
-//
 class ChooseMealBy extends React.Component<MostProps> {
   public state: IState = {
     selectedOption: "",
     options: []
   };
 
-  //   public static getDerivedStateFromProps({
-  //     chooseMealBy,
-  //     userOptions
-  //   }: Props): { selectedOption: string; options: string[] } {
-  //     if (userOptions.length) {
-  //       return {
-  //         selectedOption: chooseMealBy ? chooseMealBy : "",
-  //         options: userOptions
-  //       };
-  //     }
-
-  //     return {
-  //       selectedOption: chooseMealBy ? chooseMealBy : "",
-  //       options: [
-  //         "Time of Day",
-  //         "Convenience",
-  //         "Style",
-  //         "Just show me everything you got"
-  //       ]
-  //     };
-  //   }
-  public static getDerivedStateFromProps(props: MostProps) {
-    console.log("props:", props);
-    return {
-      selectedOption: "",
-      options: [
-        "Time of Day",
-        "Convenience",
-        "Style",
-        "Just show me everything you got"
-      ]
-    };
+  public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
+    console.log("props:", nextProps);
+    return nextProps.chooseMealBy === prevState.chooseMealBy
+      ? {}
+      : { selectedOption: nextProps.chooseMealBy };
   }
 
   public render() {
     const { selectedOption, options } = this.state;
     return (
-      <pre>
-        <code>{JSON.stringify(this.props)}</code>
-      </pre>
+      <div>
+        <p>state</p>
+        <pre>
+          <code>{JSON.stringify(this.state)}</code>
+        </pre>
+        <ul>
+          {this.props.userOptions.map((item, idx) => {
+            return (
+              <li key={idx} onClick={() => this.props.setMealBy(item)}>
+                {item}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     );
   }
 }
 
-//
 const mapStateToProps = (state: MostProps) => ({
   chooseMealBy: state.chooseBy.chooseMealBy,
   userOptions: state.chooseBy.userOptions
@@ -96,6 +63,3 @@ const mapDispatchToProps = (dispatch: any) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChooseMealBy);
-
-// export default ChooseMealBy;
-// export default connector(ChooseMealBy);

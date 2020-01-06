@@ -11,7 +11,7 @@ export default function mealChooser(
     case "CHOOSE_MEAL_BY": {
       return {
         ...state,
-        ...action.payload
+        chooseMealBy: action.payload
       };
     }
     default:
