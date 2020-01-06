@@ -37,6 +37,7 @@
     "@types/reach__router": "^1.2.6",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@types/react-redux": "^7.1.5",
     "cross-env": "^6.0.3",
     "jest": "^24.9.0",
     "parcel-bundler": "^1.12.4",
@@ -51,6 +52,8 @@
     "@reach/router": "^1.2.1",
     "dotenv": "^8.2.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5"
   }
 }
