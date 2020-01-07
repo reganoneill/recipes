@@ -2,51 +2,49 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
 import { navigate } from "@reach/router";
-import { IChooseMealByProps } from "../types/IChooseMealByProps";
-import { IChooseMealByState } from "../types/IChooseMealByState";
+import { IStyleProps } from "../types/IStyleProps";
+import { IStyleState } from "../types/IStyleState";
 
 // import { Dispatch } from "redux"; //TODO: get this working
-import chooseMeal from "../actionCreators/mealChooser";
 import setPage from "../actionCreators/setPage";
+import chooseMealStyle from "../actionCreators/chooseMealStyle";
 
-type MostProps = IChooseMealByProps &
-  IChooseMealByState &
-  RouteComponentProps<any>;
+type MostProps = IStyleProps & IStyleState & RouteComponentProps<any>;
 
-class ChooseMealBy extends React.Component<MostProps> {
-  public state: IChooseMealByState = {
-    selectedOption: "",
-    options: []
-  };
+class Style extends React.Component<MostProps> {
+  public state: IStyleState = {};
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
     console.log("props:", nextProps);
+
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
   }
 
   public render() {
-    const { selectedOption, options } = this.state;
     return (
       <div className="formContainer">
-        <p className="formTitle">Select meal by...</p>
+        <p className="formTitle">Style</p>
         <ul className="selectList">
-          {this.props.userOptions.map((item, idx) => {
-            if (item === this.state.selectedOption) {
+          {this.props.options.map((style: string) => {
+            if (style === this.props.style) {
               return (
                 <li
-                  key={item}
+                  key={style}
                   className="selectedOptionListItem"
-                  onClick={() => this.props.setMealBy(item)}
+                  onClick={() => this.props._chooseMealStyle(style)}
                 >
-                  {item}
+                  {style}
                 </li>
               );
             }
             return (
-              <li key={item} onClick={() => this.props.setMealBy(item)}>
-                {item}
+              <li
+                key={style}
+                onClick={() => this.props._chooseMealStyle(style)}
+              >
+                {style}
               </li>
             );
           })}
@@ -54,7 +52,7 @@ class ChooseMealBy extends React.Component<MostProps> {
         <button
           onClick={() =>
             navigate(
-              `/meals/${this.props.chooseMealBy
+              `/${this.props.chooseMealBy
                 .toLowerCase()
                 .split(" ")
                 .join("-")}`
@@ -69,18 +67,17 @@ class ChooseMealBy extends React.Component<MostProps> {
 }
 
 const mapStateToProps = (state: MostProps) => ({
-  chooseMealBy: state.chooseBy.chooseMealBy,
-  userOptions: state.chooseBy.userOptions,
-  currentPage: state.page
+  style: state.mealStyle.style,
+  options: state.mealStyle.options
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setMealBy(meal: string) {
-    dispatch(chooseMeal(meal));
+  _chooseMealStyle(meal: string) {
+    dispatch(chooseMealStyle(meal));
   },
   changePage(page: number) {
     dispatch(setPage(page));
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChooseMealBy);
+export default connect(mapStateToProps, mapDispatchToProps)(Style);

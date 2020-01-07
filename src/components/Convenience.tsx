@@ -2,51 +2,54 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
 import { navigate } from "@reach/router";
-import { IChooseMealByProps } from "../types/IChooseMealByProps";
-import { IChooseMealByState } from "../types/IChooseMealByState";
+import { IConvenienceState } from "../types/IConvenienceState";
+import { IConvenienceProps } from "../types/IConvenienceProps";
 
 // import { Dispatch } from "redux"; //TODO: get this working
-import chooseMeal from "../actionCreators/mealChooser";
 import setPage from "../actionCreators/setPage";
+import chooseMealConvenience from "../actionCreators/chooseMealConvenience";
 
-type MostProps = IChooseMealByProps &
-  IChooseMealByState &
+type MostProps = IConvenienceProps &
+  IConvenienceState &
   RouteComponentProps<any>;
 
-class ChooseMealBy extends React.Component<MostProps> {
-  public state: IChooseMealByState = {
-    selectedOption: "",
-    options: []
-  };
+class Convenience extends React.Component<MostProps> {
+  public state: IConvenienceState = {};
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
     console.log("props:", nextProps);
+
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
   }
 
   public render() {
-    const { selectedOption, options } = this.state;
     return (
       <div className="formContainer">
-        <p className="formTitle">Select meal by...</p>
+        {/* <pre>
+          <code>{JSON.stringify(this.props)}</code>
+        </pre> */}
+        <p className="formTitle">Convenience</p>
         <ul className="selectList">
-          {this.props.userOptions.map((item, idx) => {
-            if (item === this.state.selectedOption) {
+          {this.props.options.map((ease: string) => {
+            if (ease === this.props.convenience) {
               return (
                 <li
-                  key={item}
+                  key={ease}
                   className="selectedOptionListItem"
-                  onClick={() => this.props.setMealBy(item)}
+                  onClick={() => this.props._chooseConvenience(ease)}
                 >
-                  {item}
+                  {ease}
                 </li>
               );
             }
             return (
-              <li key={item} onClick={() => this.props.setMealBy(item)}>
-                {item}
+              <li
+                key={ease}
+                onClick={() => this.props._chooseConvenience(ease)}
+              >
+                {ease}
               </li>
             );
           })}
@@ -54,7 +57,7 @@ class ChooseMealBy extends React.Component<MostProps> {
         <button
           onClick={() =>
             navigate(
-              `/meals/${this.props.chooseMealBy
+              `/${this.props.chooseMealBy
                 .toLowerCase()
                 .split(" ")
                 .join("-")}`
@@ -69,18 +72,19 @@ class ChooseMealBy extends React.Component<MostProps> {
 }
 
 const mapStateToProps = (state: MostProps) => ({
-  chooseMealBy: state.chooseBy.chooseMealBy,
-  userOptions: state.chooseBy.userOptions,
+  //   meal: state.mealTime,
+  convenience: state.mealConvenience.convenience,
+  options: state.mealConvenience.options,
   currentPage: state.page
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setMealBy(meal: string) {
-    dispatch(chooseMeal(meal));
+  _chooseConvenience(ease: string) {
+    dispatch(chooseMealConvenience(ease));
   },
   changePage(page: number) {
     dispatch(setPage(page));
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChooseMealBy);
+export default connect(mapStateToProps, mapDispatchToProps)(Convenience);

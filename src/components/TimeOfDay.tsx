@@ -2,51 +2,46 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
 import { navigate } from "@reach/router";
-import { IChooseMealByProps } from "../types/IChooseMealByProps";
-import { IChooseMealByState } from "../types/IChooseMealByState";
+import { ITimeOfDayState } from "../types/ITimeOfDayState";
+import { ITimeOfDayProps } from "../types/ITimeOfDayProps";
 
 // import { Dispatch } from "redux"; //TODO: get this working
-import chooseMeal from "../actionCreators/mealChooser";
 import setPage from "../actionCreators/setPage";
+import chooseMealTime from "../actionCreators/chooseMealTime";
 
-type MostProps = IChooseMealByProps &
-  IChooseMealByState &
-  RouteComponentProps<any>;
+type MostProps = ITimeOfDayProps & ITimeOfDayState & RouteComponentProps<any>;
 
-class ChooseMealBy extends React.Component<MostProps> {
-  public state: IChooseMealByState = {
-    selectedOption: "",
-    options: []
-  };
+class TimeOfDay extends React.Component<MostProps> {
+  public state: ITimeOfDayState = {};
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
     console.log("props:", nextProps);
+
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
   }
 
   public render() {
-    const { selectedOption, options } = this.state;
     return (
       <div className="formContainer">
-        <p className="formTitle">Select meal by...</p>
+        <p className="formTitle">Time Of Day</p>
         <ul className="selectList">
-          {this.props.userOptions.map((item, idx) => {
-            if (item === this.state.selectedOption) {
+          {this.props.meal.mealTimes.map((time: string) => {
+            if (time === this.props.meal.mealTime) {
               return (
                 <li
-                  key={item}
+                  key={time}
                   className="selectedOptionListItem"
-                  onClick={() => this.props.setMealBy(item)}
+                  onClick={() => this.props._chooseMealTime(time)}
                 >
-                  {item}
+                  {time}
                 </li>
               );
             }
             return (
-              <li key={item} onClick={() => this.props.setMealBy(item)}>
-                {item}
+              <li key={time} onClick={() => this.props._chooseMealTime(time)}>
+                {time}
               </li>
             );
           })}
@@ -54,7 +49,7 @@ class ChooseMealBy extends React.Component<MostProps> {
         <button
           onClick={() =>
             navigate(
-              `/meals/${this.props.chooseMealBy
+              `/${this.props.chooseMealBy
                 .toLowerCase()
                 .split(" ")
                 .join("-")}`
@@ -69,18 +64,17 @@ class ChooseMealBy extends React.Component<MostProps> {
 }
 
 const mapStateToProps = (state: MostProps) => ({
-  chooseMealBy: state.chooseBy.chooseMealBy,
-  userOptions: state.chooseBy.userOptions,
+  meal: state.mealTime,
   currentPage: state.page
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  setMealBy(meal: string) {
-    dispatch(chooseMeal(meal));
+  _chooseMealTime(meal: string) {
+    dispatch(chooseMealTime(meal));
   },
   changePage(page: number) {
     dispatch(setPage(page));
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChooseMealBy);
+export default connect(mapStateToProps, mapDispatchToProps)(TimeOfDay);

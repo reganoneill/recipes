@@ -1,6 +1,9 @@
-const initialState: any = {
+import { IChooseMealByProps } from "../types/IChooseMealByProps";
+
+const initialState: IChooseMealByProps = {
   chooseMealBy: "",
-  userOptions: ["Time of Day", "Convenience", "Style", "Show Me Everything"]
+  userOptions: ["Time of Day", "Convenience", "Style", "Show Me Everything"],
+  page: 1
 };
 
 export default function mealChooser(
