@@ -9,6 +9,7 @@ import ChooseMealBy from "./components/ChooseMealBy";
 import TimeOfDay from "./components/TimeOfDay";
 import Convenience from "./components/Convenience";
 import Style from "./components/Style";
+import ListMeals from "./components/ListMeals";
 
 const App = () => {
   const theme = useState("darkblue");
@@ -25,6 +26,7 @@ const App = () => {
           <TimeOfDay path="/meals/time-of-day" />
           <Convenience path="/meals/convenience" />
           <Style path="/meals/style" />
+          <ListMeals path="/meals/:category/:type" />
           {/* TODO: add this in later to reference individual recipes */}
           {/* <Details path="/details/:id" /> */}
         </Router>

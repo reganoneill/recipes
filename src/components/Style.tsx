@@ -9,59 +9,31 @@ import { IStyleState } from "../types/IStyleState";
 import setPage from "../actionCreators/setPage";
 import chooseMealStyle from "../actionCreators/chooseMealStyle";
 
+import Form from "./Form";
+
 type MostProps = IStyleProps & IStyleState & RouteComponentProps<any>;
 
 class Style extends React.Component<MostProps> {
   public state: IStyleState = {};
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
-    console.log("props:", nextProps);
-
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
   }
-
   public render() {
     return (
-      <div className="formContainer">
-        <p className="formTitle">Style</p>
-        <ul className="selectList">
-          {this.props.options.map((style: string) => {
-            if (style === this.props.style) {
-              return (
-                <li
-                  key={style}
-                  className="selectedOptionListItem"
-                  onClick={() => this.props._chooseMealStyle(style)}
-                >
-                  {style}
-                </li>
-              );
-            }
-            return (
-              <li
-                key={style}
-                onClick={() => this.props._chooseMealStyle(style)}
-              >
-                {style}
-              </li>
-            );
-          })}
-        </ul>
-        <button
-          onClick={() =>
-            navigate(
-              `/${this.props.chooseMealBy
-                .toLowerCase()
-                .split(" ")
-                .join("-")}`
-            )
-          }
-        >
-          -> Next ->
-        </button>
-      </div>
+      <Form
+        title="Style"
+        options={this.props.options}
+        selected={this.props.style}
+        makeSelection={this.props._chooseMealStyle}
+        nextUrl={
+          this.props.style
+            ? `/meals/style/${this.props.style.toLowerCase()}`
+            : ""
+        }
+      />
     );
   }
 }

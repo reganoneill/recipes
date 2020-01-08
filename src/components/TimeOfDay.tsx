@@ -9,14 +9,14 @@ import { ITimeOfDayProps } from "../types/ITimeOfDayProps";
 import setPage from "../actionCreators/setPage";
 import chooseMealTime from "../actionCreators/chooseMealTime";
 
+import Form from "./Form";
+
 type MostProps = ITimeOfDayProps & ITimeOfDayState & RouteComponentProps<any>;
 
 class TimeOfDay extends React.Component<MostProps> {
   public state: ITimeOfDayState = {};
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
-    console.log("props:", nextProps);
-
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
@@ -24,41 +24,17 @@ class TimeOfDay extends React.Component<MostProps> {
 
   public render() {
     return (
-      <div className="formContainer">
-        <p className="formTitle">Time Of Day</p>
-        <ul className="selectList">
-          {this.props.meal.mealTimes.map((time: string) => {
-            if (time === this.props.meal.mealTime) {
-              return (
-                <li
-                  key={time}
-                  className="selectedOptionListItem"
-                  onClick={() => this.props._chooseMealTime(time)}
-                >
-                  {time}
-                </li>
-              );
-            }
-            return (
-              <li key={time} onClick={() => this.props._chooseMealTime(time)}>
-                {time}
-              </li>
-            );
-          })}
-        </ul>
-        <button
-          onClick={() =>
-            navigate(
-              `/${this.props.chooseMealBy
-                .toLowerCase()
-                .split(" ")
-                .join("-")}`
-            )
-          }
-        >
-          -> Next ->
-        </button>
-      </div>
+      <Form
+        title="Time of day"
+        options={this.props.meal.mealTimes}
+        selected={this.props.meal.mealTime}
+        makeSelection={this.props._chooseMealTime}
+        nextUrl={
+          this.props.meal.mealTime
+            ? `/meals/time/${this.props.meal.mealTime.toLowerCase()}`
+            : ""
+        }
+      />
     );
   }
 }

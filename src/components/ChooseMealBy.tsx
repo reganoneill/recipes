@@ -9,6 +9,8 @@ import { IChooseMealByState } from "../types/IChooseMealByState";
 import chooseMeal from "../actionCreators/mealChooser";
 import setPage from "../actionCreators/setPage";
 
+import Form from "./Form";
+
 type MostProps = IChooseMealByProps &
   IChooseMealByState &
   RouteComponentProps<any>;
@@ -29,41 +31,16 @@ class ChooseMealBy extends React.Component<MostProps> {
   public render() {
     const { selectedOption, options } = this.state;
     return (
-      <div className="formContainer">
-        <p className="formTitle">Select meal by...</p>
-        <ul className="selectList">
-          {this.props.userOptions.map((item, idx) => {
-            if (item === this.state.selectedOption) {
-              return (
-                <li
-                  key={item}
-                  className="selectedOptionListItem"
-                  onClick={() => this.props.setMealBy(item)}
-                >
-                  {item}
-                </li>
-              );
-            }
-            return (
-              <li key={item} onClick={() => this.props.setMealBy(item)}>
-                {item}
-              </li>
-            );
-          })}
-        </ul>
-        <button
-          onClick={() =>
-            navigate(
-              `/meals/${this.props.chooseMealBy
-                .toLowerCase()
-                .split(" ")
-                .join("-")}`
-            )
-          }
-        >
-          -> Next ->
-        </button>
-      </div>
+      <Form
+        title="Select meal by..."
+        options={this.props.userOptions}
+        selected={this.state.selectedOption}
+        makeSelection={this.props.setMealBy}
+        nextUrl={`/meals/${this.props.chooseMealBy
+          .toLowerCase()
+          .split(" ")
+          .join("-")}`}
+      />
     );
   }
 }

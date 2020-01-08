@@ -9,6 +9,8 @@ import { IConvenienceProps } from "../types/IConvenienceProps";
 import setPage from "../actionCreators/setPage";
 import chooseMealConvenience from "../actionCreators/chooseMealConvenience";
 
+import Form from "./Form";
+
 type MostProps = IConvenienceProps &
   IConvenienceState &
   RouteComponentProps<any>;
@@ -26,53 +28,22 @@ class Convenience extends React.Component<MostProps> {
 
   public render() {
     return (
-      <div className="formContainer">
-        {/* <pre>
-          <code>{JSON.stringify(this.props)}</code>
-        </pre> */}
-        <p className="formTitle">Convenience</p>
-        <ul className="selectList">
-          {this.props.options.map((ease: string) => {
-            if (ease === this.props.convenience) {
-              return (
-                <li
-                  key={ease}
-                  className="selectedOptionListItem"
-                  onClick={() => this.props._chooseConvenience(ease)}
-                >
-                  {ease}
-                </li>
-              );
-            }
-            return (
-              <li
-                key={ease}
-                onClick={() => this.props._chooseConvenience(ease)}
-              >
-                {ease}
-              </li>
-            );
-          })}
-        </ul>
-        <button
-          onClick={() =>
-            navigate(
-              `/${this.props.chooseMealBy
-                .toLowerCase()
-                .split(" ")
-                .join("-")}`
-            )
-          }
-        >
-          -> Next ->
-        </button>
-      </div>
+      <Form
+        title="Convenience"
+        options={this.props.options}
+        selected={this.props.convenience}
+        makeSelection={this.props._chooseConvenience}
+        nextUrl={
+          this.props.convenience
+            ? `/meals/convenience/${this.props.convenience.toLowerCase()}`
+            : ""
+        }
+      />
     );
   }
 }
 
 const mapStateToProps = (state: MostProps) => ({
-  //   meal: state.mealTime,
   convenience: state.mealConvenience.convenience,
   options: state.mealConvenience.options,
   currentPage: state.page
