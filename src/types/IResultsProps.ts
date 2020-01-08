@@ -1,5 +1,5 @@
-import { IRecipe } from './IRecipe';
+import { IRecipe } from "./IRecipe";
 
 export interface IResultsProps {
-    recipes: IRecipe[];
+  recipes: IRecipe[];
 }
