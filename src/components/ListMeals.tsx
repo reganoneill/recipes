@@ -7,7 +7,7 @@ import { IListMealsState } from "../types/IListMealsState";
 import { IRecipe } from "../types/IRecipe";
 
 import data from "../data/mock/recipes.json";
-type MostProps = IListMealsState & RouteComponentProps<any>;
+type MostProps = RouteComponentProps<any>;
 
 class ListMeals extends React.Component<MostProps> {
   public state: IListMealsState = {
@@ -15,9 +15,8 @@ class ListMeals extends React.Component<MostProps> {
   };
 
   public componentDidMount() {
-    // TODO: GET ALL RECIPES BASED OFF OF THIS.PROPS.TYPE
     const meals = data.recipes.filter(
-      (recipe: IRecipe) => recipe[`${this.props.category}`] === this.props.type
+      (recipe: any) => recipe[`${this.props.category}`] === this.props.type
     );
     this.setState({ meals });
   }
@@ -25,25 +24,27 @@ class ListMeals extends React.Component<MostProps> {
   public render() {
     return (
       <div className="results">
+        <p className="formTitle">Recipes</p>
         {this.state.meals.map((recipe: IRecipe) => {
           let ingredients: JSX.Element[] = [];
           if (recipe.ingredientList) {
             ingredients = recipe.ingredientList.map(ingredient => {
-              return <li key={ingredient}>{ingredient}</li>;
+              return <span key={ingredient}>{ingredient}</span>;
             });
           }
           return (
             <div key={recipe.title} className="recipeCard">
               <hr />
               <h4>{recipe.title}</h4>
-              <p>difficulty: {recipe.difficulty}</p>
-              <p>meal: {recipe.time}</p>
+              <p>difficulty: {recipe.convenience}</p>
+              <p>Meals: {recipe.time}</p>
               {ingredients.length ? (
-                <Fragment>
+                <div className="ingredientSection">
                   <p>ingredients:</p>
-                  <ul>{ingredients}</ul>
-                </Fragment>
+                  <div className="ingredientList">{ingredients}</div>
+                </div>
               ) : null}
+              <button>more</button>
             </div>
           );
         })}

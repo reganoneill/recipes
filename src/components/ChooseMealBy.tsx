@@ -32,7 +32,7 @@ class ChooseMealBy extends React.Component<MostProps> {
     const { selectedOption, options } = this.state;
     return (
       <Form
-        title="Select meal by..."
+        title="Select meal by"
         options={this.props.userOptions}
         selected={this.state.selectedOption}
         makeSelection={this.props.setMealBy}

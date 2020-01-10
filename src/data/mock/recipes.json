@@ -32,6 +32,79 @@
       "style": "asian",
       "notes": "be careful not to get rice too sticky",
       "score": 6
+    },
+    {
+      "time": "dinner",
+      "convenience": "medium",
+      "prepTimeMinutes": 60,
+      "cookTimeMinutes": 45,
+      "ingredientList": [
+        "tofu",
+        "tempeh",
+        "rice noodles",
+        "carrots",
+        "peanut butter",
+        "hot peppers",
+        "coco aminos"
+      ],
+      "title": "Pad Thai",
+      "style": "asian",
+      "notes": "using a blender to mix the sauce together really makes a difference (instead of hand mixing)",
+      "score": 9
+    },
+    {
+      "time": "anytime",
+      "convenience": "easy",
+      "prepTimeMinutes": 10,
+      "cookTimeMinutes": 0,
+      "ingredientList": ["avocado", "pumpkin seeds", "chili flake", "bread"],
+      "title": "Avocado Toast",
+      "style": "american",
+      "notes": "usually just throw this together with whatever is in the fridge - add some beans or chickpeas and plenty of salt and pepper",
+      "score": 9
+    },
+    {
+      "time": "anytime",
+      "convenience": "easy",
+      "prepTimeMinutes": 40,
+      "cookTimeMinutes": 10,
+      "ingredientList": [
+        "kidney beans",
+        "black beans",
+        "tomato paste",
+        "diced tomatoes",
+        "carrot",
+        "onion",
+        "garlic",
+        "hot sauce",
+        "avocado"
+      ],
+      "title": "Chili",
+      "style": "american",
+      "notes": "If possible, use kidney beans bought dry and then soaked and cooked with plenty of seasoning",
+      "score": 9
+    },
+    {
+      "time": "anytime",
+      "convenience": "easy",
+      "prepTimeMinutes": 10,
+      "cookTimeMinutes": 10,
+      "ingredientList": [
+        "black beans",
+        "cucumber",
+        "cabbage",
+        "chickpeas",
+        "red onion",
+        "greens",
+        "hot sauce",
+        "avocado",
+        "shaved carrot",
+        "amazing homemade dressing"
+      ],
+      "title": "everything salad",
+      "style": "american",
+      "notes": "If possible, use chickpeas bought dry and then soaked and cooked with plenty of seasoning",
+      "score": 9
     }
   ]
 }

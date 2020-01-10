@@ -15,7 +15,7 @@ const Results: FunctionComponent<IResultsProps> = ({ recipes }) => {
           <div key={idx} className="recipeCard">
             <hr />
             <h4>{recipe.title}</h4>
-            <p>difficulty: {recipe.difficulty}</p>
+            <p>difficulty: {recipe.convenience}</p>
             <p>meal: {recipe.time}</p>
             {ingredients.length ? (
               <Fragment>

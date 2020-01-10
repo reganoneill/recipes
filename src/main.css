@@ -5,17 +5,27 @@ html {
 
 * {
   font-family: "Helvetica";
+  /* google fonts */
+  /* font-family: 'Work Sans', sans-serif;
+  font-family: 'Muli', sans-serif;
+  font-family: 'Shadows Into Light', cursive; */
 }
 
 body {
-  background-color: #fbe3b9;
+  background-color: #2d334a;
   /* secondary: #fab696 */
   /* alt: #0c9463 */
   /* alt2: #2d334a */
 }
 
 h4 {
+  font-family: "Muli", sans-serif;
   font-size: 2em;
+  color: #fab696;
+}
+p {
+  font-family: "Roboto Mono", monospace;
+  color: #fab696;
 }
 
 .formBar {
@@ -40,23 +50,54 @@ h4 {
   padding-bottom: 1em;
 }
 
-.formItem input {
-}
-
 .filterSelect {
   min-width: 8em;
   margin: 1em 0;
 }
 
-select {
-}
-
 .results {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: scroll;
   border-left: 1px solid grey;
   padding-left: 0.75em;
   min-height: 20em;
+}
+
+.recipeCard {
+  width: 85%;
+  padding: 0.5em 0;
+}
+
+.recipeCard h4 {
+  padding: 0.5em 0;
+}
+
+.recipeCard p {
+  padding: 0.5em 0;
+}
+
+.recipeCard .ingredientSection {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+
+.recipeCard .ingredientList {
+  display: flex;
+  align-items: center;
+}
+
+.recipeCard .ingredientList span {
+  margin: 0 0.5em;
+  padding: 0.25em;
+  border: 1px solid #eee;
+  color: #eee;
+}
+
+.recipeCard button {
+  margin-top: 3em;
 }
 
 .selectedOptionListItem {
@@ -64,7 +105,6 @@ select {
 }
 
 .formContainer {
-  border: 1px solid #000;
   display: flex;
   flex-direction: column;
   margin-top: 5em;
@@ -75,7 +115,6 @@ select {
   font-size: 2em;
   font-weight: bold;
   margin-bottom: 0.75em;
-  border-bottom: 1px solid black;
 }
 
 .selectList {
@@ -84,14 +123,21 @@ select {
 
 .selectList li {
   margin: 1em 0.25em;
-  padding: 0.25em;
-  border: 1px solid black;
+  padding: 0.5em;
+  border: 1px solid #5f538a;
+  color: #fab696;
+  font-family: "Work Sans", sans-serif;
 }
+
+/* secondary: #fab696 */
+/* alt: #0c9463 */
+/* alt2: #2d334a */
 
 .selectList li:hover {
   cursor: pointer;
 }
 
 .selectList .selectedOptionListItem {
-  border: 5px solid chartreuse;
+  border: 3px solid #bf9ed4;
+  color: #fab696;
 }
