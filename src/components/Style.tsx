@@ -30,7 +30,7 @@ class Style extends React.Component<MostProps> {
         makeSelection={this.props._chooseMealStyle}
         nextUrl={
           this.props.style
-            ? `/meals/style/${this.props.style.toLowerCase()}`
+            ? `/recipes/style/${this.props.style.toLowerCase()}`
             : ""
         }
       />

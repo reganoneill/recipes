@@ -19,8 +19,6 @@ class Convenience extends React.Component<MostProps> {
   public state: IConvenienceState = {};
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
-    console.log("props:", nextProps);
-
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
@@ -35,7 +33,7 @@ class Convenience extends React.Component<MostProps> {
         makeSelection={this.props._chooseConvenience}
         nextUrl={
           this.props.convenience
-            ? `/meals/convenience/${this.props.convenience.toLowerCase()}`
+            ? `/recipes/convenience/${this.props.convenience.toLowerCase()}`
             : ""
         }
       />

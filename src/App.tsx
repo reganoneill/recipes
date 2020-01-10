@@ -5,11 +5,12 @@ import { Provider } from "react-redux";
 import store from "./store";
 import ThemeContext from "./ThemeContext";
 // import SearchParams from "./SearchParams";
-import ChooseMealBy from "./components/ChooseMealBy";
+import ChooseRecipeBy from "./components/ChooseRecipeBy";
 import TimeOfDay from "./components/TimeOfDay";
 import Convenience from "./components/Convenience";
 import Style from "./components/Style";
 import ListMeals from "./components/ListMeals";
+import RecipePage from "./components/RecipePage";
 
 const App = () => {
   const theme = useState("darkblue");
@@ -21,14 +22,12 @@ const App = () => {
           {/* <Link to="/">Recipe Ref</Link> */}
         </header>
         <Router>
-          {/* <SearchParams path="/" /> */}
-          <ChooseMealBy path="/meals" />
-          <TimeOfDay path="/meals/time-of-day" />
-          <Convenience path="/meals/convenience" />
-          <Style path="/meals/style" />
-          <ListMeals path="/meals/:category/:type" />
-          {/* TODO: add this in later to reference individual recipes */}
-          {/* <Details path="/details/:id" /> */}
+          <ChooseRecipeBy path="/recipes" />
+          <TimeOfDay path="/recipes/time-of-day" />
+          <Convenience path="/recipes/convenience" />
+          <Style path="/recipes/style" />
+          <ListMeals path="/recipes/:category/:type" />
+          <RecipePage path="/recipes/:recipe" />
         </Router>
       </div>
     </Provider>

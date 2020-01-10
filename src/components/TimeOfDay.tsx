@@ -31,7 +31,7 @@ class TimeOfDay extends React.Component<MostProps> {
         makeSelection={this.props._chooseMealTime}
         nextUrl={
           this.props.meal.mealTime
-            ? `/meals/time/${this.props.meal.mealTime.toLowerCase()}`
+            ? `/recipes/time/${this.props.meal.mealTime.toLowerCase()}`
             : ""
         }
       />

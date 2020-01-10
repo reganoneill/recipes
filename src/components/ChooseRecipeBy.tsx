@@ -15,14 +15,13 @@ type MostProps = IChooseMealByProps &
   IChooseMealByState &
   RouteComponentProps<any>;
 
-class ChooseMealBy extends React.Component<MostProps> {
+class ChooseRecipeBy extends React.Component<MostProps> {
   public state: IChooseMealByState = {
     selectedOption: "",
     options: []
   };
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
-    console.log("props:", nextProps);
     return nextProps.chooseMealBy === prevState.chooseMealBy
       ? {}
       : { selectedOption: nextProps.chooseMealBy };
@@ -32,11 +31,11 @@ class ChooseMealBy extends React.Component<MostProps> {
     const { selectedOption, options } = this.state;
     return (
       <Form
-        title="Select meal by"
+        title="Select recipe by"
         options={this.props.userOptions}
         selected={this.state.selectedOption}
         makeSelection={this.props.setMealBy}
-        nextUrl={`/meals/${this.props.chooseMealBy
+        nextUrl={`/recipes/${this.props.chooseMealBy
           .toLowerCase()
           .split(" ")
           .join("-")}`}
@@ -60,4 +59,4 @@ const mapDispatchToProps = (dispatch: any) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChooseMealBy);
+export default connect(mapStateToProps, mapDispatchToProps)(ChooseRecipeBy);

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
-// import { navigate } from "@reach/router"; // TODO: tie this in to link to single meals
+import { navigate } from "@reach/router"; // TODO: tie this in to link to single meals
 
 import { IListMealsState } from "../types/IListMealsState";
 import { IRecipe } from "../types/IRecipe";
@@ -18,6 +18,7 @@ class ListMeals extends React.Component<MostProps> {
     const meals = data.recipes.filter(
       (recipe: any) => recipe[`${this.props.category}`] === this.props.type
     );
+
     this.setState({ meals });
   }
 
@@ -44,7 +45,18 @@ class ListMeals extends React.Component<MostProps> {
                   <div className="ingredientList">{ingredients}</div>
                 </div>
               ) : null}
-              <button>more</button>
+              <button
+                onClick={() =>
+                  navigate(
+                    `/recipes/${recipe.title
+                      .toLowerCase()
+                      .split(" ")
+                      .join("-")}`
+                  )
+                }
+              >
+                more
+              </button>
             </div>
           );
         })}
