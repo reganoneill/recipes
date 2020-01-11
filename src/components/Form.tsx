@@ -25,7 +25,7 @@ const Form = (props: any) => {
         disabled={props.selected.length ? false : true}
         onClick={() => navigate(props.nextUrl)}
       >
-        -> Next ->
+        Next
       </button>
     </div>
   );

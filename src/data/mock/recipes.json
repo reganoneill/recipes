@@ -105,6 +105,65 @@
       "style": "american",
       "notes": "If possible, use chickpeas bought dry and then soaked and cooked with plenty of seasoning",
       "score": 9
+    },
+    {
+      "time": "dinner",
+      "convenience": "medium",
+      "prepTimeMinutes": 30,
+      "cookTimeMinutes": 40,
+      "ingredientList": [
+        "potatoes",
+        "veganaise",
+        "parsley",
+        "lemon",
+        "lemon pepper"
+      ],
+      "title": "roasted potatoes with parsley aoli",
+      "style": "american",
+      "notes": "Be creative with adding your own seasonings",
+      "score": 9
+    },
+    {
+      "time": "dinner",
+      "convenience": "medium",
+      "prepTimeMinutes": 30,
+      "cookTimeMinutes": 40,
+      "ingredientList": ["cauliflower", "avocado", "cilantro", "paprika"],
+      "title": "roasted cauliflower with avocado and cilantro",
+      "style": "american",
+      "notes": "cut cauliflower into florets and lightly coat with oil, then dust with paprika before roasting for 25 minutes at 400 degrees.",
+      "score": 9
+    },
+    {
+      "time": "dinner",
+      "convenience": "easy",
+      "prepTimeMinutes": 10,
+      "cookTimeMinutes": 30,
+      "ingredientList": ["cabbage (green)", "breadcrums"],
+      "title": "cabbage steaks with breadcrumbs",
+      "style": "american",
+      "notes": "Cut cabbage into steaks, liberally salt and lightly coat with oil, feel free to season with whatever you feel. Roast for 20 minutes at 400. Ideal when edges are a big burnt and crispy",
+      "score": 9
+    },
+    {
+      "time": "dinner",
+      "convenience": "easy",
+      "prepTimeMinutes": "8hrs+",
+      "cookTimeMinutes": 90,
+      "ingredientList": [
+        "kidney beans",
+        "brown basmati rice",
+        "tomato paste",
+        "celery",
+        "white onion",
+        "parsley",
+        "jalapeno",
+        "hot sauce"
+      ],
+      "title": "red beans and rice",
+      "style": "american",
+      "notes": "similar to chili. really good with spicy italian beyond sausage",
+      "score": 9
     }
   ]
 }

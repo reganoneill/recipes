@@ -25,7 +25,9 @@ class ListMeals extends React.Component<MostProps> {
   public render() {
     return (
       <div className="results">
-        <p className="formTitle">Recipes</p>
+        <div className="recipeCard">
+          <p className="formTitle">Recipes</p>
+        </div>
         {this.state.meals.map((recipe: IRecipe) => {
           let ingredients: JSX.Element[] = [];
           if (recipe.ingredientList) {
