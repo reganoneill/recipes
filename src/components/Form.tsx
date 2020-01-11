@@ -4,7 +4,9 @@ import { navigate } from "@reach/router";
 const Form = (props: any) => {
   return (
     <div className="formContainer">
-      <p className="formTitle">{props.title}</p>
+      <div className="limitWidth15 zigzag">
+        <p className="formTitle">{props.title}</p>
+      </div>
       <ul className="selectList">
         {props.options.map((item: string) => {
           if (item === props.selected) {

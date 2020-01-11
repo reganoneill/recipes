@@ -26,42 +26,45 @@ class ListMeals extends React.Component<MostProps> {
     return (
       <div className="results">
         <div className="recipeCard">
-          <p className="formTitle">Recipes</p>
+          <div className="recipePageTitle zigzag">
+            <p className="formTitle">Recipes</p>
+          </div>
         </div>
-        {this.state.meals.map((recipe: IRecipe) => {
-          let ingredients: JSX.Element[] = [];
-          if (recipe.ingredientList) {
-            ingredients = recipe.ingredientList.map(ingredient => {
-              return <span key={ingredient}>{ingredient}</span>;
-            });
-          }
-          return (
-            <div key={recipe.title} className="recipeCard">
-              <hr />
-              <h4>{recipe.title}</h4>
-              <p>difficulty: {recipe.convenience}</p>
-              <p>Meals: {recipe.time}</p>
-              {ingredients.length ? (
-                <div className="ingredientSection">
-                  <p>ingredients:</p>
-                  <div className="ingredientList">{ingredients}</div>
-                </div>
-              ) : null}
-              <button
-                onClick={() =>
-                  navigate(
-                    `/recipes/${recipe.title
-                      .toLowerCase()
-                      .split(" ")
-                      .join("-")}`
-                  )
-                }
-              >
-                more
-              </button>
-            </div>
-          );
-        })}
+        <div className="listAllMeals">
+          {this.state.meals.map((recipe: IRecipe) => {
+            let ingredients: JSX.Element[] = [];
+            if (recipe.ingredientList) {
+              ingredients = recipe.ingredientList.map(ingredient => {
+                return <span key={ingredient}>{ingredient}</span>;
+              });
+            }
+            return (
+              <div key={recipe.title} className="recipeCard">
+                <h4 className="viewTitle">{recipe.title}</h4>
+                <p>difficulty: {recipe.convenience}</p>
+                <p>Meals: {recipe.time}</p>
+                {ingredients.length ? (
+                  <div className="ingredientSection">
+                    <p>ingredients:</p>
+                    <div className="ingredientList">{ingredients}</div>
+                  </div>
+                ) : null}
+                <button
+                  onClick={() =>
+                    navigate(
+                      `/recipes/${recipe.title
+                        .toLowerCase()
+                        .split(" ")
+                        .join("-")}`
+                    )
+                  }
+                >
+                  more
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

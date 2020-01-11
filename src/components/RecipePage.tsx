@@ -35,27 +35,31 @@ class RecipePage extends React.Component<MostProps> {
     if (this.state.recipe && this.state.recipe.title) {
       return (
         <div className="recipeCard">
-          <p className="formTitle">{this.state.recipe.title}</p>
-          <p>Style: {this.state.recipe.style}</p>
-          <p>Meal: {this.state.recipe.time}</p>
-          <p>Difficulty: {this.state.recipe.convenience}</p>
-          <p>Prep Time:{this.state.recipe.prepTimeMinutes}</p>
-          <p>Cook Time: {this.state.recipe.cookTimeMinutes}</p>
-          <p>Notes:</p>
-          <p className="recipeNotes">{this.state.recipe.notes}</p>
-          {this.state.recipe.ingredientList.length ? (
-            <div className="ingredientSection">
-              <p>ingredients:</p>
-              <div className="ingredientList">{ingredients}</div>
-            </div>
-          ) : null}
+          <div className="recipePageTitle zigzag">
+            <p className="formTitle">{this.state.recipe.title}</p>
+          </div>
+          <div className="recipeDetails">
+            <p>Style: {this.state.recipe.style}</p>
+            <p>Meal: {this.state.recipe.time}</p>
+            <p>Difficulty: {this.state.recipe.convenience}</p>
+            <p>Prep Time:{this.state.recipe.prepTimeMinutes}</p>
+            <p>Cook Time: {this.state.recipe.cookTimeMinutes}</p>
+            <p>Notes:</p>
+            <p className="recipeNotes">{this.state.recipe.notes}</p>
+            {this.state.recipe.ingredientList.length ? (
+              <div className="ingredientSection">
+                <p>ingredients:</p>
+                <div className="ingredientList">{ingredients}</div>
+              </div>
+            ) : null}
+          </div>
         </div>
       );
     }
   };
 
   public render() {
-    return <div className="recipePage">{this.renderRecipe()}</div>;
+    return <div className="recipePage results">{this.renderRecipe()}</div>;
   }
 }
 export default RecipePage;

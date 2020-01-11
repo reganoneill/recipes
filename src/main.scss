@@ -1,3 +1,6 @@
+$backgroundcolor: #2d334a;
+$linecolor: #f7a9b9;
+
 html {
   box-sizing: border-box;
   min-width: 100%;
@@ -7,8 +10,8 @@ html {
   font-family: "Helvetica";
   /* google fonts */
   /* font-family: 'Work Sans', sans-serif;
-  font-family: 'Muli', sans-serif;
-  font-family: 'Shadows Into Light', cursive; */
+    font-family: 'Muli', sans-serif;
+    font-family: 'Shadows Into Light', cursive; */
 }
 
 body {
@@ -60,8 +63,6 @@ p {
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-  /* border-left: 1px solid grey;
-  padding-left: 0.75em; */
   min-height: 20em;
   margin-top: 3em;
 }
@@ -136,10 +137,12 @@ p {
 .selectList li:hover {
   cursor: pointer;
 }
-
-.selectList .selectedOptionListItem {
-  border: 3px solid #bf9ed4;
-  color: #fab696;
+.selectList {
+  margin-top: 1.5em;
+  .selectedOptionListItem {
+    border: 3px solid #bf9ed4;
+    color: #fab696;
+  }
 }
 
 .recipeNotes {
@@ -149,4 +152,73 @@ p {
 
 .viewTitle {
   text-decoration: underline;
+}
+
+$height: 16px;
+$halfheight: ($height/2);
+$thickness: 110%; // increase to make the line thicker
+$offset: 4px;
+
+.zigzag {
+  // use either (or both?) of these for the background
+  // e38557
+  // 87d6f4
+
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  &:before {
+    height: ($height - $offset);
+    top: $thickness;
+    background: linear-gradient(-135deg, #87d6f4 $halfheight, transparent 0) 0
+        $halfheight,
+      linear-gradient(135deg, #87d6f4 $halfheight, transparent 0) 0 $halfheight;
+    background-position: top left;
+    background-repeat: repeat-x;
+    background-size: $height $height;
+  }
+  &:after {
+    height: $height;
+    top: 100%;
+    background: linear-gradient(
+          -135deg,
+          $backgroundcolor $halfheight,
+          transparent 0
+        )
+        0 $halfheight,
+      linear-gradient(135deg, $backgroundcolor $halfheight, transparent 0) 0
+        $halfheight;
+    background-position: top left;
+    background-repeat: repeat-x;
+    background-size: $height $height;
+  }
+}
+
+.limitWidth15 {
+  width: 25%;
+  height: 2.5em;
+  display: flex;
+  justify-content: center;
+}
+
+.recipePageTitle {
+  height: 2.5em;
+  line-height: 15px;
+}
+
+.recipeDetails {
+  margin-top: 2em;
+}
+
+.listAllMeals {
+  margin-top: 2em;
+  width: 85%;
 }
