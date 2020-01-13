@@ -13,11 +13,15 @@ const SignIn: FunctionComponent<MostProps> = () => {
       email: username,
       password
     };
-    console.log("send this:", validateUser);
     axios
       .post("http://localhost:8083/signin", validateUser)
-      .then(data => {
-        console.log("got data:", data);
+      .then(res => {
+        window.localStorage.setItem(
+          "recipeToken",
+          JSON.stringify(res.data.token)
+        );
+        // TODO: create view at path /admin which is protected
+        navigate("/recipes");
       })
       .catch(err => {
         console.error("an error occurred:", err);
