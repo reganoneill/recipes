@@ -9,6 +9,7 @@ import Convenience from "./components/Convenience";
 import Style from "./components/Style";
 import ListMeals from "./components/ListMeals";
 import RecipePage from "./components/RecipePage";
+import SignIn from "./components/SignIn";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           {/* <Link to="/">Recipe Ref</Link> */}
         </header>
         <Router>
+          <SignIn path="/app/signin" />
           <ChooseRecipeBy path="/recipes" />
           <TimeOfDay path="/recipes/time-of-day" />
           <Convenience path="/recipes/convenience" />
