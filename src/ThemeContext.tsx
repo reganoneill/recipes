@@ -1,8 +1,8 @@
 import { createContext, SetStateAction, Dispatch } from "react";
 
 const ThemeContext = createContext<[string, Dispatch<SetStateAction<string>>]>([
-  "green",
-  theme => theme
+  "0",
+  token => token
 ]);
 
 export default ThemeContext;

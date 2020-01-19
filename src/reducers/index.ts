@@ -4,6 +4,7 @@ import mealTime from "./mealTime";
 import mealConvenience from "./mealConvenience";
 import mealStyle from "./mealStyle";
 import page from "./page";
+import user from "./user";
 import theme from "./theme";
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
   mealConvenience,
   mealStyle,
   page,
+  user,
   theme
 });

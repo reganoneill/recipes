@@ -10,25 +10,32 @@ import Style from "./components/Style";
 import ListMeals from "./components/ListMeals";
 import RecipePage from "./components/RecipePage";
 import SignIn from "./components/SignIn";
+import PrivateRoute from "./components/PrivateRoute";
+import ThemeContext from "./ThemeContext";
+// import Admin from "./components/Admin";
 
 const App = () => {
+  const user = useState("");
   return (
     <Provider store={store}>
-      <div className="mainContainer">
-        <header>
-          {/* TODO: add this in later when layout comes together */}
-          {/* <Link to="/">Recipe Ref</Link> */}
-        </header>
-        <Router>
-          <SignIn path="/app/signin" />
-          <ChooseRecipeBy path="/recipes" />
-          <TimeOfDay path="/recipes/time-of-day" />
-          <Convenience path="/recipes/convenience" />
-          <Style path="/recipes/style" />
-          <ListMeals path="/recipes/:category/:type" />
-          <RecipePage path="/recipes/:recipe" />
-        </Router>
-      </div>
+      <ThemeContext.Provider value={user}>
+        <div className="mainContainer">
+          <header>
+            {/* TODO: add this in later when layout comes together */}
+            {/* <Link to="/">Recipe Ref</Link> */}
+          </header>
+          <Router>
+            <SignIn path="/app/signin" />
+            <ChooseRecipeBy path="/recipes" />
+            <TimeOfDay path="/recipes/time-of-day" />
+            <Convenience path="/recipes/convenience" />
+            <Style path="/recipes/style" />
+            <ListMeals path="/recipes/:category/:type" />
+            <RecipePage path="/recipes/:recipe" />
+            <PrivateRoute path="/admin" />
+          </Router>
+        </div>
+      </ThemeContext.Provider>
     </Provider>
   );
 };
