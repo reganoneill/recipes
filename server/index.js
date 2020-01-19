@@ -1,9 +1,21 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
 
+app.use(cors());
+
+//dev
+//proxy all /api/ routes to our api server on port 8820
+if (process.env.NODE_ENV === "dev") {
+  console.log("only running on dev");
+  app.use(
+    "/api/",
+    proxy({ target: "http://localhost:8083", changeOrigin: true })
+  );
+}
 // Add headers
 app.use(function(req, res, next) {
   // Website you wish to allow to connect
