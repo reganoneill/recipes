@@ -11,14 +11,13 @@ import ListMeals from "./components/ListMeals";
 import RecipePage from "./components/RecipePage";
 import SignIn from "./components/SignIn";
 import PrivateRoute from "./components/PrivateRoute";
-import ThemeContext from "./ThemeContext";
-// import Admin from "./components/Admin";
+import AuthContext from "./AuthContext";
 
 const App = () => {
   const user = useState("");
   return (
     <Provider store={store}>
-      <ThemeContext.Provider value={user}>
+      <AuthContext.Provider value={user}>
         <div className="mainContainer">
           <header>
             {/* TODO: add this in later when layout comes together */}
@@ -32,10 +31,10 @@ const App = () => {
             <Style path="/recipes/style" />
             <ListMeals path="/recipes/:category/:type" />
             <RecipePage path="/recipes/:recipe" />
-            <PrivateRoute path="/admin" />
+            <PrivateRoute path="/admin" component={"Admin"} />
           </Router>
         </div>
-      </ThemeContext.Provider>
+      </AuthContext.Provider>
     </Provider>
   );
 };

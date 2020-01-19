@@ -20,7 +20,7 @@ class Admin extends React.Component<MostProps> {
     return (
       <div className="admin">
         <div>
-          <h1>test admin</h1>
+          <h1>success: you are authed in!</h1>
         </div>
       </div>
     );
