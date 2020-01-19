@@ -1,12 +1,13 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState, useContext, FunctionComponent } from "react";
 import { navigate, RouteComponentProps } from "@reach/router";
-
+import AuthContext from "../AuthContext";
 import axios from "axios";
 
 type MostProps = RouteComponentProps<any>;
 const SignIn: FunctionComponent<MostProps> = () => {
   const [username, updateUsername] = useState("");
   const [password, updatePassword] = useState("");
+  const [token, setToken] = useContext(AuthContext);
 
   const validateCredentials = () => {
     const validateUser = {
@@ -20,8 +21,8 @@ const SignIn: FunctionComponent<MostProps> = () => {
           "recipeToken",
           JSON.stringify(res.data.token)
         );
-        // TODO: create view at path /admin which is protected
-        navigate("/recipes");
+        setToken(res.data.token);
+        navigate("/admin");
       })
       .catch(err => {
         console.error("an error occurred:", err);
