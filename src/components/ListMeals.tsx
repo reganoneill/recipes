@@ -11,15 +11,15 @@ type MostProps = RouteComponentProps<any>;
 
 class ListMeals extends React.Component<MostProps> {
   public state: IListMealsState = {
-    meals: []
+    recipes: []
   };
 
   public componentDidMount() {
-    const meals = data.recipes.filter(
+    const recipes = data.recipes.filter(
       (recipe: any) => recipe[`${this.props.category}`] === this.props.type
     );
 
-    this.setState({ meals });
+    this.setState({ recipes });
   }
 
   public render() {
@@ -31,7 +31,7 @@ class ListMeals extends React.Component<MostProps> {
           </div>
         </div>
         <div className="listAllMeals">
-          {this.state.meals.map((recipe: IRecipe) => {
+          {this.state.recipes.map((recipe: IRecipe) => {
             let ingredients: JSX.Element[] = [];
             if (recipe.ingredientList) {
               ingredients = recipe.ingredientList.map(ingredient => {
@@ -42,7 +42,7 @@ class ListMeals extends React.Component<MostProps> {
               <div key={recipe.title} className="recipeCard">
                 <h4 className="viewTitle">{recipe.title}</h4>
                 <p>difficulty: {recipe.convenience}</p>
-                <p>Meals: {recipe.time}</p>
+                <p>meal: {recipe.time}</p>
                 {ingredients.length ? (
                   <div className="ingredientSection">
                     <p>ingredients:</p>
@@ -50,6 +50,7 @@ class ListMeals extends React.Component<MostProps> {
                   </div>
                 ) : null}
                 <button
+                  className="listButton"
                   onClick={() =>
                     navigate(
                       `/recipes/${recipe.title

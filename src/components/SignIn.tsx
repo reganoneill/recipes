@@ -1,7 +1,7 @@
 import React, { useState, useContext, FunctionComponent } from "react";
 import { navigate, RouteComponentProps } from "@reach/router";
 import AuthContext from "../AuthContext";
-import axios from "axios";
+import { signin } from "../api/auth";
 
 type MostProps = RouteComponentProps<any>;
 const SignIn: FunctionComponent<MostProps> = () => {
@@ -14,20 +14,17 @@ const SignIn: FunctionComponent<MostProps> = () => {
       email: username,
       password
     };
-    axios
-      .post("http://localhost:8083/signin", validateUser)
-      .then(res => {
-        window.localStorage.setItem(
-          "recipeToken",
-          JSON.stringify(res.data.token)
-        );
-        setToken(res.data.token);
-        navigate("/admin");
-      })
-      .catch(err => {
-        console.error("an error occurred:", err);
-      });
+
+    signin(validateUser).then((res: any) => {
+      window.localStorage.setItem(
+        "recipeToken",
+        JSON.stringify(res.data.token)
+      );
+      setToken(res.data.token);
+      navigate("/admin");
+    });
   };
+
   return (
     <form
       className="signinContainer"

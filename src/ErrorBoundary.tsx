@@ -4,10 +4,7 @@ import { Link, Redirect } from "@reach/router";
 type MostProps = any;
 
 class ErrorBoundary extends Component<MostProps> {
-  //   constructor(props: any) {
-  // super(props);
   public state = { hasError: false, redirect: false };
-  //   }
   public static getDerivedStateFromError() {
     return { hasError: true };
   }
@@ -21,7 +18,7 @@ class ErrorBoundary extends Component<MostProps> {
   }
   public render() {
     if (this.state.redirect) {
-      return <Redirect to="/" from="/lol" />;
+      return <Redirect to="/" from="/test" />;
     }
 
     if (this.state.hasError) {

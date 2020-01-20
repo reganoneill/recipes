@@ -67,8 +67,40 @@ p {
   margin-top: 3em;
 }
 
+.admin {
+  .recipeForm {
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+  }
+
+  .adminFormButton {
+    width: 12%;
+    margin: 0.5em 0;
+  }
+
+  .adminActions {
+    width: 85%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .adminForm {
+    min-width: 85%;
+
+    input {
+      margin-bottom: 1.5em;
+    }
+  }
+}
+
 .recipeCard {
   width: 85%;
+
+  .adminButton button {
+    margin-top: 0;
+  }
 }
 
 .recipeCard h4 {
@@ -95,10 +127,6 @@ p {
   padding: 0.25em;
   border: 1px solid #eee;
   color: #eee;
-}
-
-.recipeCard button {
-  margin-top: 3em;
 }
 
 .selectedOptionListItem {
