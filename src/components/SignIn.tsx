@@ -15,38 +15,44 @@ const SignIn: FunctionComponent<MostProps> = () => {
       password
     };
 
-    signin(validateUser).then((res: any) => {
-      window.localStorage.setItem(
-        "recipeToken",
-        JSON.stringify(res.data.token)
-      );
-      setToken(res.data.token);
-      navigate("/admin");
-    });
+    signin(validateUser)
+      .then((res: any) => {
+        window.localStorage.setItem(
+          "recipeToken",
+          JSON.stringify(res.data.token)
+        );
+        setToken(res.data.token);
+        navigate("/admin");
+      })
+      .catch(err => {
+        navigate("/recipes");
+      });
   };
 
   return (
-    <form
-      className="signinContainer"
-      onSubmit={e => {
-        e.preventDefault();
-        validateCredentials();
-      }}
-    >
-      <label>username:</label>
-      <input
-        type="text"
-        value={username}
-        onChange={e => updateUsername(e.target.value)}
-      />
-      <label>password:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={e => updatePassword(e.target.value)}
-      />
-      <button>Submit</button>
-    </form>
+    <div className="formContainer">
+      <form
+        className="signinContainer"
+        onSubmit={e => {
+          e.preventDefault();
+          validateCredentials();
+        }}
+      >
+        <label>username:</label>
+        <input
+          type="text"
+          value={username}
+          onChange={e => updateUsername(e.target.value)}
+        />
+        <label>password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={e => updatePassword(e.target.value)}
+        />
+        <button>Submit</button>
+      </form>
+    </div>
   );
 };
 

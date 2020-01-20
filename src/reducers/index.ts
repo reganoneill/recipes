@@ -5,6 +5,7 @@ import mealConvenience from "./mealConvenience";
 import mealStyle from "./mealStyle";
 import page from "./page";
 import theme from "./theme";
+import recipes from "./recipes";
 
 export default combineReducers({
   chooseBy: mealChooser,
@@ -12,5 +13,6 @@ export default combineReducers({
   mealConvenience,
   mealStyle,
   page,
-  theme
+  theme,
+  recipes
 });

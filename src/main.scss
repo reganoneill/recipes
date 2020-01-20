@@ -21,15 +21,22 @@ body {
   /* alt2: #2d334a */
 
   .mainContainer {
-    min-height: 100vh;
+    min-height: 90vh;
 
     .footer {
-      margin-top: 5em;
+      margin-top: 3em;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       font-size: 0.75em;
       a {
         color: white;
+      }
+      p {
+        margin-right: 2em;
+      }
+
+      button {
+        margin-left: 2em;
       }
     }
   }
@@ -77,10 +84,9 @@ p {
   flex-direction: column;
   align-items: center;
   overflow: scroll;
-  min-height: 20em;
   margin-top: 5em;
 
-  height: 75vh;
+  height: 82vh;
 }
 
 .admin {
@@ -154,7 +160,20 @@ p {
   flex-direction: column;
   margin-top: 5em;
   align-items: center;
-  height: 75vh;
+  height: 82vh;
+
+  .signinContainer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+    input {
+      margin: 1em 0;
+    }
+    button {
+      margin: 2em 0;
+    }
+  }
 }
 
 .formTitle {
@@ -249,7 +268,6 @@ $offset: 4px;
 .limitWidth15 {
   width: 25%;
   min-height: 2.5em;
-  // max-height: 4em;
   display: flex;
   justify-content: center;
 }

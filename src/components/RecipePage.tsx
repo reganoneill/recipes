@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
 
@@ -13,14 +13,13 @@ class RecipePage extends React.Component<MostProps> {
   };
 
   public componentDidMount() {
-    const recipe = data.recipes.filter(
+    const recipe = this.props.recipes.chosen.filter(
       (item: any) =>
         item.title
           .toLowerCase()
           .split(" ")
           .join("-") === this.props.recipe
     )[0];
-
     this.setState({ recipe });
   }
 
@@ -62,4 +61,9 @@ class RecipePage extends React.Component<MostProps> {
     return <div className="recipePage results">{this.renderRecipe()}</div>;
   }
 }
-export default RecipePage;
+
+const mapStateToProps = (state: MostProps) => ({
+  recipes: state.recipes
+});
+
+export default connect(mapStateToProps)(RecipePage);

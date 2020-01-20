@@ -24,13 +24,13 @@ const PrivateRoute: any = (props: MostProps) => {
 
   // use for prod
   // if (!token || !userToken || token !== userToken) {
-  //   return <Redirect from="/admin" to="/app/signin" />;
+  //   return <Redirect from="/admin" to="/recipes" />;
   // } else {
   //   switch (props.component) {
   //     case "Admin":
   //       return <Admin />;
   //     default:
-  //       return <Redirect from="/admin" to="/app/signin" />;
+  //       return <Redirect from="/admin" to="/recipes" />;
   //   }
   // }
 };
