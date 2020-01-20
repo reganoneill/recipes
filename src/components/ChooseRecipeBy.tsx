@@ -37,6 +37,10 @@ class ChooseRecipeBy extends React.Component<MostProps> {
         options={this.props.userOptions}
         selected={this.state.selectedOption}
         makeSelection={this.props.setMealBy}
+        alternateNextUrl={{
+          case: "Just show me everything",
+          url: "/recipes/all"
+        }}
         nextUrl={`/recipes/${this.props.chooseMealBy
           .toLowerCase()
           .split(" ")
