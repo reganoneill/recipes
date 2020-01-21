@@ -1,7 +1,9 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import { connect, ConnectedProps } from "react-redux";
-
+import { connect } from "react-redux";
+import { getAllRecipes } from "../api/index";
+import setRecipes from "../actionCreators/setRecipes";
+import { IRecipe } from "../types/IRecipe";
 import { IRecipePageState } from "../types/IRecipePageState";
 
 import data from "../data/mock/recipes.json";
@@ -9,18 +11,44 @@ type MostProps = RouteComponentProps<any>;
 
 class RecipePage extends React.Component<MostProps> {
   public state: IRecipePageState = {
-    recipe: undefined
+    recipe: {
+      _id: "",
+      meal: "",
+      difficulty: "",
+      prepTimeMinutes: 0,
+      cookTimeMinutes: 0,
+      ingredientList: [""],
+      title: "",
+      style: "",
+      notes: "",
+      score: 0,
+      description: ""
+    }
   };
 
   public componentDidMount() {
-    const recipe = this.props.recipes.chosen.filter(
-      (item: any) =>
-        item.title
-          .toLowerCase()
-          .split(" ")
-          .join("-") === this.props.recipe
-    )[0];
-    this.setState({ recipe });
+    if (this.props.recipes.chosen.length < 1) {
+      getAllRecipes().then((allRecipes: any) => {
+        this.props._setRecipes(allRecipes);
+        const recipe = allRecipes.filter(
+          (item: any) =>
+            item.title
+              .toLowerCase()
+              .split(" ")
+              .join("-") === this.props.recipe
+        )[0];
+        this.setState({ recipe });
+      });
+    } else {
+      const recipe = this.props.recipes.chosen.filter(
+        (item: any) =>
+          item.title
+            .toLowerCase()
+            .split(" ")
+            .join("-") === this.props.recipe
+      )[0];
+      this.setState({ recipe });
+    }
   }
 
   public renderRecipe = () => {
@@ -66,4 +94,10 @@ const mapStateToProps = (state: MostProps) => ({
   recipes: state.recipes
 });
 
-export default connect(mapStateToProps)(RecipePage);
+const mapDispatchToProps = (dispatch: any) => ({
+  _setRecipes(recipes: IRecipe[]) {
+    dispatch(setRecipes(recipes));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);
