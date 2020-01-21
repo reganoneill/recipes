@@ -22,7 +22,7 @@ const SignIn: FunctionComponent<MostProps> = () => {
           JSON.stringify(res.data.token)
         );
         setToken(res.data.token);
-        navigate("/admin");
+        navigate("/recipes/admin");
       })
       .catch(err => {
         navigate("/recipes");

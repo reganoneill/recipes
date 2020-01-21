@@ -36,7 +36,7 @@ const App = () => {
             <Style path="/recipes/style" />
             <ListMeals path="/recipes/:category/:type" />
             <RecipePage path="/recipes/:recipe" />
-            <PrivateRoute path="/admin" component={"Admin"} />
+            <PrivateRoute path="/recipes/admin" component={"Admin"} />
             <NotFound default={true} />
           </Router>
           <footer className="footer">

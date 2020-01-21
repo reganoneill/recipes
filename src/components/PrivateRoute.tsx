@@ -11,28 +11,28 @@ const PrivateRoute: any = (props: MostProps) => {
   userToken = userToken ? userToken.replace(/['"]+/g, "") : "";
 
   // only use this on dev
-  if (!userToken) {
-    return <Redirect from="/admin" to="/app/signin" />;
-  } else {
-    switch (props.component) {
-      case "Admin":
-        return <Admin />;
-      default:
-        return <Redirect from="/admin" to="/app/signin" />;
-    }
-  }
-
-  // use for prod
-  // if (!token || !userToken || token !== userToken) {
-  //   return <Redirect from="/admin" to="/recipes" />;
+  // if (!userToken) {
+  //   return <Redirect from="/recipes/admin" to="/app/signin" />;
   // } else {
   //   switch (props.component) {
   //     case "Admin":
   //       return <Admin />;
   //     default:
-  //       return <Redirect from="/admin" to="/recipes" />;
+  //       return <Redirect from="/recipes/admin" to="/app/signin" />;
   //   }
   // }
+
+  // use for prod
+  if (!token || !userToken || token !== userToken) {
+    return <Redirect from="/recipes/admin" to="/recipes" />;
+  } else {
+    switch (props.component) {
+      case "Admin":
+        return <Admin />;
+      default:
+        return <Redirect from="/recipes/admin" to="/recipes" />;
+    }
+  }
 };
 
 export default PrivateRoute;

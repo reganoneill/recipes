@@ -194,7 +194,11 @@ class Admin extends React.Component<MostProps> {
     e.preventDefault();
     if (this.validateFields("modifyRecipe")) {
       const updatedRecipe = Object.assign({}, this.state.modifyRecipe);
-      updatedRecipe.ingredientList = updatedRecipe.ingredientList.split(",");
+
+      if (!Array.isArray(updatedRecipe.ingredientList)) {
+        updatedRecipe.ingredientList = updatedRecipe.ingredientList.split(",");
+      }
+
       updateRecipe(updatedRecipe).then(res => {
         this.setState({
           modifyRecipe: {
