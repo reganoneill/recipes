@@ -16,9 +16,17 @@ export const getAllRecipes = () => {
 };
 
 export const createNewRecipe = (recipe: IRecipe) => {
+  const token = collectToken();
   return new Promise((resolve, reject) => {
-    axios
-      .post(`${BASE_URL}/api/recipe`, recipe)
+    axios({
+      method: "POST",
+      url: `${BASE_URL}/api/recipe/auth`,
+      headers: {
+        Authorization: `Bearer 
+      ${token}`
+      },
+      data: recipe
+    })
       .then(res => {
         resolve(res);
       })
@@ -29,9 +37,31 @@ export const createNewRecipe = (recipe: IRecipe) => {
 };
 
 export const deleteRecipe = (id: string) => {
+  const token = collectToken();
   return new Promise((resolve, reject) => {
-    axios
-      .delete(`${BASE_URL}/api/recipe/${id}`)
+    axios({
+      method: "DELETE",
+      url: `${BASE_URL}/api/recipe/auth/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).catch(err => {
+      reject(err);
+    });
+  });
+};
+
+export const updateRecipe = (recipe: IRecipe) => {
+  const token = collectToken();
+  return new Promise((resolve, reject) => {
+    axios({
+      method: "PUT",
+      url: `${BASE_URL}/api/recipe/auth/${recipe._id}`,
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      data: recipe
+    })
       .then(res => {
         resolve(res);
       })
@@ -41,15 +71,11 @@ export const deleteRecipe = (id: string) => {
   });
 };
 
-export const updateRecipe = (recipe: IRecipe) => {
-  return new Promise((resolve, reject) => {
-    axios
-      .put(`${BASE_URL}/api/recipe/${recipe._id}`, recipe)
-      .then(res => {
-        resolve(res);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+const collectToken = () => {
+  const token = window.localStorage.getItem("recipeToken");
+  if (typeof token === "string") {
+    return JSON.parse(token);
+  } else {
+    return false;
+  }
 };

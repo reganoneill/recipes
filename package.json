@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clear-build-cache": "rm -rf .cache/ public/dist/",
-    "dev": "env NODE_ENV=dev parcel src/index.html",
+    "dev": "env NODE_ENV=dev parcel -p 8090 src/index.html",
     "prod-build": "rimraf public/dist && rimraf .cache && npm run build-client && npm run start",
     "build-client": "parcel build src/index.html -d public/dist --public-url /dist",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
