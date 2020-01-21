@@ -1,7 +1,7 @@
 import React, { useState, useContext, FunctionComponent } from "react";
 import { navigate, RouteComponentProps } from "@reach/router";
 import AuthContext from "../AuthContext";
-import axios from "axios";
+import { signin } from "../api/auth";
 
 type MostProps = RouteComponentProps<any>;
 const SignIn: FunctionComponent<MostProps> = () => {
@@ -14,42 +14,45 @@ const SignIn: FunctionComponent<MostProps> = () => {
       email: username,
       password
     };
-    axios
-      .post("http://localhost:8083/signin", validateUser)
-      .then(res => {
+
+    signin(validateUser)
+      .then((res: any) => {
         window.localStorage.setItem(
           "recipeToken",
           JSON.stringify(res.data.token)
         );
         setToken(res.data.token);
-        navigate("/admin");
+        navigate("/recipes/admin");
       })
       .catch(err => {
-        console.error("an error occurred:", err);
+        navigate("/recipes");
       });
   };
+
   return (
-    <form
-      className="signinContainer"
-      onSubmit={e => {
-        e.preventDefault();
-        validateCredentials();
-      }}
-    >
-      <label>username:</label>
-      <input
-        type="text"
-        value={username}
-        onChange={e => updateUsername(e.target.value)}
-      />
-      <label>password:</label>
-      <input
-        type="password"
-        value={password}
-        onChange={e => updatePassword(e.target.value)}
-      />
-      <button>Submit</button>
-    </form>
+    <div className="formContainer">
+      <form
+        className="signinContainer"
+        onSubmit={e => {
+          e.preventDefault();
+          validateCredentials();
+        }}
+      >
+        <label>username:</label>
+        <input
+          type="text"
+          value={username}
+          onChange={e => updateUsername(e.target.value)}
+        />
+        <label>password:</label>
+        <input
+          type="password"
+          value={password}
+          onChange={e => updatePassword(e.target.value)}
+        />
+        <button>Submit</button>
+      </form>
+    </div>
   );
 };
 

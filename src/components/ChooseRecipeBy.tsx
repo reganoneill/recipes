@@ -2,6 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect, ConnectedProps } from "react-redux";
 import { navigate } from "@reach/router";
+
 import { IChooseMealByProps } from "../types/IChooseMealByProps";
 import { IChooseMealByState } from "../types/IChooseMealByState";
 
@@ -18,7 +19,8 @@ type MostProps = IChooseMealByProps &
 class ChooseRecipeBy extends React.Component<MostProps> {
   public state: IChooseMealByState = {
     selectedOption: "",
-    options: []
+    options: [],
+    user: ""
   };
 
   public static getDerivedStateFromProps(nextProps: MostProps, prevState: any) {
@@ -35,6 +37,10 @@ class ChooseRecipeBy extends React.Component<MostProps> {
         options={this.props.userOptions}
         selected={this.state.selectedOption}
         makeSelection={this.props.setMealBy}
+        alternateNextUrl={{
+          case: "Just show me everything",
+          url: "/recipes/all"
+        }}
         nextUrl={`/recipes/${this.props.chooseMealBy
           .toLowerCase()
           .split(" ")

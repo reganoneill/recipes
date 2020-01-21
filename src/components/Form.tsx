@@ -1,7 +1,19 @@
 import React from "react";
 import { navigate } from "@reach/router";
+import { IFormOptions } from "../types/IFormOptions";
 
-const Form = (props: any) => {
+function _navigate(props: IFormOptions) {
+  if (
+    props.alternateNextUrl &&
+    props.selected === props.alternateNextUrl.case
+  ) {
+    navigate(props.alternateNextUrl.url);
+  } else {
+    navigate(props.nextUrl);
+  }
+}
+
+const Form = (props: IFormOptions) => {
   return (
     <div className="formContainer">
       <div className="limitWidth15 zigzag">
@@ -25,7 +37,7 @@ const Form = (props: any) => {
       </ul>
       <button
         disabled={props.selected.length ? false : true}
-        onClick={() => navigate(props.nextUrl)}
+        onClick={() => _navigate(props)}
       >
         Next
       </button>

@@ -10,14 +10,27 @@ const PrivateRoute: any = (props: MostProps) => {
   let userToken = localStorage.getItem("recipeToken");
   userToken = userToken ? userToken.replace(/['"]+/g, "") : "";
 
+  // only use this on dev
+  // if (!userToken) {
+  //   return <Redirect from="/recipes/admin" to="/app/signin" />;
+  // } else {
+  //   switch (props.component) {
+  //     case "Admin":
+  //       return <Admin />;
+  //     default:
+  //       return <Redirect from="/recipes/admin" to="/app/signin" />;
+  //   }
+  // }
+
+  // use for prod
   if (!token || !userToken || token !== userToken) {
-    return <Redirect from="/admin" to="/app/signin" />;
+    return <Redirect from="/recipes/admin" to="/recipes" />;
   } else {
     switch (props.component) {
       case "Admin":
         return <Admin />;
       default:
-        return <Redirect from="/admin" to="/app/signin" />;
+        return <Redirect from="/recipes/admin" to="/recipes" />;
     }
   }
 };
