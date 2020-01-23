@@ -22,8 +22,7 @@ export const createNewRecipe = (recipe: IRecipe) => {
       method: "POST",
       url: `${BASE_URL}/api/recipe/auth`,
       headers: {
-        Authorization: `Bearer 
-      ${token}`
+        Authorization: `Bearer ${token}`
       },
       data: recipe
     })
