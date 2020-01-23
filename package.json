@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clear-build-cache": "rm -rf .cache/ public/dist/",
+    "clear-build-cache": "rm -rf .cache/ public/recipes/dist/",
     "dev": "env NODE_ENV=dev parcel -p 8090 src/index.html",
-    "prod-build": "rimraf public/dist && rimraf .cache && npm run build-client && npm run start",
-    "build-client": "parcel build src/index.html -d public/dist --public-url /dist",
+    "prod-build": "rimraf public/recipes/dist && rimraf .cache && npm run build-client && npm run start",
+    "build-client": "parcel build src/index.html -d public/recipes/dist --public-url /recipes/dist",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "tslint --project .",
     "test": "jest --env=jsdom",

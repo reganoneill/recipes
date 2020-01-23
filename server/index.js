@@ -22,7 +22,10 @@ if (process.env.NODE_ENV === "dev") {
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.get("/*", function(req, res) {
-  const filename = path.resolve(__dirname, "./../public/dist/index.html");
+  const filename = path.resolve(
+    __dirname,
+    "./../public/recipes/dist/index.html"
+  );
   fs.readFile(filename, (err, result) => {
     if (err) {
       return next(err);
