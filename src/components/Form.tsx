@@ -16,9 +16,8 @@ function _navigate(props: IFormOptions) {
 const Form = (props: IFormOptions) => {
   return (
     <div className="formContainer">
-      <div className="limitWidth15 zigzag">
-        <p className="formTitle">{props.title}</p>
-      </div>
+      <p className="formTitle">{props.title}</p>
+      <div className="limitWidth15Form zigzag" />
       <ul className="selectList">
         {props.options.map((item: string) => {
           if (item === props.selected) {

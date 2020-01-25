@@ -179,6 +179,7 @@ p {
 .formTitle {
   font-size: 2em;
   font-weight: bold;
+  margin-bottom: -1em;
 }
 
 .selectList {
@@ -265,15 +266,15 @@ $offset: 4px;
   }
 }
 
-.limitWidth15 {
-  width: 25%;
+.limitWidth15Form {
+  width: 35%;
   min-height: 2.5em;
   display: flex;
   justify-content: center;
 }
 
 .recipePageTitle {
-  height: 2.5em;
+  padding: 0 0 1.5em 0;
   line-height: 15px;
 }
 
