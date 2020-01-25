@@ -62,9 +62,8 @@ class RecipePage extends React.Component<MostProps> {
     if (this.state.recipe && this.state.recipe.title) {
       return (
         <div className="recipeCard">
-          <div className="recipePageTitle zigzag">
-            <p className="formTitle">{this.state.recipe.title}</p>
-          </div>
+          <p className="formTitle">{this.state.recipe.title}</p>
+          <div className="recipePageTitle zigzag" />
           <div className="recipeDetails">
             <p>Style: {this.state.recipe.style}</p>
             <p>Meal: {this.state.recipe.time}</p>

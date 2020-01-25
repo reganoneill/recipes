@@ -85,9 +85,8 @@ class ListMeals extends React.Component<MostProps> {
     return (
       <div className="results">
         <div className="recipeCard">
-          <div className="recipePageTitle zigzag">
-            <p className="formTitle">Recipes</p>
-          </div>
+          <p className="formTitle">Recipes</p>
+          <div className="recipePageTitle zigzag" />
         </div>
         <div className="listAllMeals">{this.determineRender()}</div>
       </div>
