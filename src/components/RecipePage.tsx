@@ -30,23 +30,25 @@ class RecipePage extends React.Component<MostProps> {
     if (this.props.recipes.chosen.length < 1) {
       getAllRecipes().then((allRecipes: any) => {
         this.props._setRecipes(allRecipes);
-        const recipe = allRecipes.filter(
-          (item: any) =>
-            return item.title
+        const recipe = allRecipes.filter((item: any) => {
+          return (
+            item.title
               .toLowerCase()
               .split(" ")
               .join("-") === this.props.recipe
-        )[0];
+          );
+        })[0];
         this.setState({ recipe });
       });
     } else {
-      const recipe = this.props.recipes.chosen.filter(
-        (item: any) =>
+      const recipe = this.props.recipes.chosen.filter((item: any) => {
+        return (
           item.title
             .toLowerCase()
             .split(" ")
             .join("-") === this.props.recipe
-      )[0];
+        );
+      })[0];
       this.setState({ recipe });
     }
   }
