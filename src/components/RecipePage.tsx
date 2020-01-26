@@ -32,7 +32,7 @@ class RecipePage extends React.Component<MostProps> {
         this.props._setRecipes(allRecipes);
         const recipe = allRecipes.filter(
           (item: any) =>
-            item.title
+            return item.title
               .toLowerCase()
               .split(" ")
               .join("-") === this.props.recipe
