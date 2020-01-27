@@ -1,7 +1,8 @@
 import React from "react";
 import { RouteComponentProps } from "@reach/router";
-import { connect, ConnectedProps } from "react-redux";
-import { navigate } from "@reach/router"; // TODO: tie this in to link to single meals
+import { connect } from "react-redux";
+import { sortBy, startCase } from "lodash";
+import { navigate } from "@reach/router";
 import { getAllRecipes } from "../api/index";
 import { IListMealsState } from "../types/IListMealsState";
 import setRecipes from "../actionCreators/setRecipes";
@@ -26,7 +27,11 @@ class ListMeals extends React.Component<MostProps> {
 
   public determineRender = () => {
     if (this.state.loading) {
-      return <div>loading....</div>;
+      return (
+        <div className="loading">
+          <p>loading...</p>
+        </div>
+      );
     }
 
     if (this.props.recipes.chosen.length) {
@@ -45,7 +50,9 @@ class ListMeals extends React.Component<MostProps> {
   };
 
   public renderRecipes = (recipes: IRecipe[]) => {
-    return recipes.map((recipe: IRecipe) => {
+    const newRecipes = sortBy(recipes, recipe => startCase(recipe.title));
+
+    return newRecipes.map((recipe: IRecipe) => {
       let ingredients: JSX.Element[] = [];
       if (recipe.ingredientList) {
         ingredients = recipe.ingredientList.map(ingredient => {

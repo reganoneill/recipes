@@ -23,6 +23,13 @@ body {
   .mainContainer {
     min-height: 90vh;
 
+    .loading {
+      display: flex;
+      justify-content: center;
+      color: white;
+      margin-top: 7em;
+    }
+
     .footer {
       margin-top: 3em;
       display: flex;
