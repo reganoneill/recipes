@@ -30,6 +30,13 @@ body {
       margin-top: 7em;
     }
 
+    a {
+      text-decoration: none;
+    }
+    a:visited {
+      text-decoration: none;
+    }
+
     .footer {
       margin-top: 3em;
       display: flex;
@@ -53,6 +60,10 @@ h4 {
   font-family: "Muli", sans-serif;
   font-size: 2em;
   color: #fab696;
+
+  a {
+    color: #fab696;
+  }
 }
 p {
   font-family: "Roboto Mono", monospace;
@@ -122,6 +133,10 @@ p {
       margin-bottom: 1.5em;
     }
   }
+}
+.titleRecipeCard {
+  width: 85%;
+  padding: 0.5em 0;
 }
 
 .recipeCard {
@@ -292,4 +307,10 @@ $offset: 4px;
 .listAllMeals {
   margin-top: 2em;
   width: 85%;
+
+  .recipeCard {
+    margin-bottom: 2.25em;
+    padding-bottom: 1em;
+    width: 100%;
+  }
 }

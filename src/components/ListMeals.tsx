@@ -2,7 +2,7 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 import { connect } from "react-redux";
 import { sortBy, startCase } from "lodash";
-import { navigate } from "@reach/router";
+import { Link } from "@reach/router";
 import { getAllRecipes } from "../api/index";
 import { IListMealsState } from "../types/IListMealsState";
 import setRecipes from "../actionCreators/setRecipes";
@@ -59,30 +59,22 @@ class ListMeals extends React.Component<MostProps> {
           return <span key={ingredient}>{ingredient}</span>;
         });
       }
+      const linkString = `/recipes/${recipe.title
+        .toLowerCase()
+        .split(" ")
+        .join("-")}`;
       return (
         <div key={recipe.title} className="recipeCard">
-          <h4 className="viewTitle">{recipe.title}</h4>
+          <h4 className="viewTitle">
+            <Link to={linkString}>{recipe.title}</Link>
+          </h4>
           <p>difficulty: {recipe.convenience}</p>
-          <p>meal: {recipe.time}</p>
           {ingredients.length ? (
             <div className="ingredientSection">
               <p>ingredients:</p>
               <div className="ingredientList">{ingredients}</div>
             </div>
           ) : null}
-          <button
-            className="listButton"
-            onClick={() =>
-              navigate(
-                `/recipes/${recipe.title
-                  .toLowerCase()
-                  .split(" ")
-                  .join("-")}`
-              )
-            }
-          >
-            more
-          </button>
         </div>
       );
     });
