@@ -262,6 +262,30 @@ class Admin extends React.Component<MostProps> {
             this.updateModifyForm({ value: e.target.value, input: "style" })
           }
         />
+        <label htmlFor="prepTimeMinutes">preptime:</label>
+        <input
+          type="text"
+          name="prepTimeMinutes"
+          value={this.state.modifyRecipe.prepTimeMinutes || ""}
+          onChange={e =>
+            this.updateModifyForm({
+              value: e.target.value,
+              input: "prepTimeMinutes"
+            })
+          }
+        />
+        <label htmlFor="cookTimeMinutes">cooktime:</label>
+        <input
+          type="text"
+          name="cookTimeMinutes"
+          value={this.state.modifyRecipe.cookTimeMinutes || ""}
+          onChange={e =>
+            this.updateModifyForm({
+              value: e.target.value,
+              input: "cookTimeMinutes"
+            })
+          }
+        />
         <label htmlFor="ingredients">
           recipe ingredients (comma separated):
         </label>
